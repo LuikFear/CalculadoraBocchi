@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainDatos extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class MainDatos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_datos);
-        Result= findViewById(R.id.view);
+        Result= findViewById(R.id.viewbtn);
 
 
     }
@@ -110,9 +111,64 @@ public class MainDatos extends AppCompatActivity {
         }else{
             Result.setText(Result.getText()+"9");
         }
+
+
+    }
+
+    private void savenumber1(View view) {
+        number1 = Float.parseFloat(Result.getText().toString());
+        Result.setText("0");
+    }
+
+    public void BT(View view) {
+        op = "B";
+        savenumber1(view);
+    }
+
+    public void KB(View view) {
+        op    = "K";
+        savenumber1(view);
+    }
+
+    public void MB(View view) {
+        op = "M";
+        savenumber1(view);
+
+    }
+
+    public void GB(View view) {
+        op ="G";
+        savenumber1(view);
     }
 
 
+    public void igualito(View view) {
+        Float resultado = 0.0f;
+        number2 = Float.parseFloat(Result.getText().toString());
+
+        // plusultra
+        if (op.equals("K")) {
+            resultado = number1 + number2;
+        }
+        // minus
+        else if (op.equals("-")) {
+            resultado = number1 - number2;
+
+            //times
+        } else if (op.equals("x")) {
+            resultado= number1 * number2;
+
+
+        }
+        // División
+        else if (op.equals("/")) {
+            if (number2 != 0) {
+                resultado = number1 / number2;
+            } else {
+                // zero
+                Toast.makeText(this, "No wey quieres explotar o q¿?", Toast.LENGTH_SHORT).show();
+            }
+        }
 
 
 
@@ -122,17 +178,5 @@ public class MainDatos extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }
